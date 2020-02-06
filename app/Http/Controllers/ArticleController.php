@@ -21,15 +21,7 @@ class ArticleController extends Controller
         return view('articles.index',compact('article'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        return view('articles.create');
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -39,9 +31,10 @@ class ArticleController extends Controller
      * @throws ValidationException
      *
      */
-    public function store(Request $request)
+    public function createArticle(Request $request)
     {
         $this->validate($request,[
+            'category_id'=>'required',
             'title'=>'required|string|max:255',
             'content'=>'required',
         ]);
@@ -69,7 +62,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function editArticle($id)
     {
         $post = Article::find($id);
         return view('articles.edit',compact('article'));
@@ -83,9 +76,10 @@ class ArticleController extends Controller
      * @return Response
      * @throws ValidationException
      */
-    public function update(Request $request, $id)
+    public function updateArticle(Request $request, $id)
     {
         $this->validate($request,[
+            'category_id'=>'required',
             'title' => 'required',
             'content' => 'required',
         ]);
@@ -99,7 +93,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function delete($id)
+    public function deleteArticle($id)
     {
         Article::find($id)->delete();
         return redirect()->route('articles.index')->with('success','Article deleted successfully');

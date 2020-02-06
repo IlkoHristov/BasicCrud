@@ -18,3 +18,8 @@ Route::get('/', function () {
 });
 
 Route::resource('articles', 'ArticleController');
+Route::post('/create','ArticleController@createArticle');
+Route::post('/view','ArticleController@getArticle');
+Route::post('/edit','ArticleController@editArticle');
+Route::post('/delete','ArticleController@deleteArticle');
+

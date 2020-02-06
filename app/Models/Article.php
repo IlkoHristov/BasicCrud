@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-
+    protected $table='articles';
+    public $primaryKey='id';
     protected $fillable = [
+        'category_id',
         'title',
         'content',
     ];
